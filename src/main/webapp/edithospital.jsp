@@ -99,7 +99,7 @@
 
 		<div class="mb-3">
 		<br>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Edit Hospital</button>
+        <button class="btn btn-primary btn-lg btn-block" id="edithospital" type="submit">Edit Hospital</button>
 		</div>
 
     </form>

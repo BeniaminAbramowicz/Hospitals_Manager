@@ -23,7 +23,7 @@
 
     <!-- Navbar -->
         <%@include file="incl/nav.app"%>
-        dupa
+        Strona główna
 
             <footer class="container-fluid w-100 py-2 bg-dark">
               <div class="container">

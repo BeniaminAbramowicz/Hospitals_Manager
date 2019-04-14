@@ -71,7 +71,7 @@
                         <c:otherwise>
                          NO
                         </c:otherwise>
-                        </c:choose>
+                     </c:choose>
                     </td>
                     <td>
                      <form method="get" action="edithospital">

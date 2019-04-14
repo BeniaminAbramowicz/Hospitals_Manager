@@ -88,8 +88,9 @@ public class AddHospitalServlet extends HttpServlet {
             req.getRequestDispatcher("addhospital.jsp").forward(req, resp);
         } else {
             hospitalsDao.addNewHospital(hospital);
-            req.getRequestDispatcher("addhospital.jsp").forward(req, resp);
             resp.sendRedirect("hospitals");
+            req.getRequestDispatcher("addhospital.jsp").forward(req, resp);
+
         }
 
 

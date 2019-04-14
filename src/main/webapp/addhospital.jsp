@@ -19,11 +19,38 @@
 	  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
 	  <script type="text/javascript">
 	  document.addEventListener("DOMContentLoaded", function(){
-      var o = document.getElementById("inputname").value;
-      if(o == "null"){
-      document.getElementById("inputname").value = " ";
+      var a = document.getElementById("inputname").value;
+      var b = document.getElementById("inputcountry").value;
+      var c = document.getElementById("inputtown").value;
+      var d = document.getElementById("inputstreet").value;
+      var e = document.getElementById("inputpostalcode").value;
+      var f = document.getElementById("inputphonenumber").value;
+      var g = document.getElementById("inputfaxnumber").value;
+      var h = document.getElementById("inputnumberofambulances").value;
+      if(a == "null"){
+            document.getElementById("inputname").value = "";
       }
-
+      if(b == "null"){
+            document.getElementById("inputcountry").value = "";
+      }
+      if(c == "null"){
+            document.getElementById("inputtown").value = "";
+      }
+      if(d == "null"){
+            document.getElementById("inputstreet").value = "";
+      }
+      if(e == "null"){
+            document.getElementById("inputpostalcode").value = "";
+      }
+      if(f == "null"){
+            document.getElementById("inputphonenumber").value = "";
+      }
+      if(g == "null"){
+            document.getElementById("inputfaxnumber").value = "";
+      }
+      if(h == "null"){
+            document.getElementById("inputnumberofambulances").value = "";
+      }
       });
       </script>
   </head>
@@ -64,8 +91,6 @@
                        String phoneNumber =  request.getParameter("phoneNumber");
                        String faxNumber =  request.getParameter("faxNumber");
                        String numberOfAmbulances =  request.getParameter("numberOfAmbulances");
-                       String helicopterAccess =  request.getParameter("helicopterAccess");
-                       String teachingHospital =  request.getParameter("teachingHospital");
                      %>
         <div class="form-group">
             <label for="inputname">Nazwa szpitala</label>
@@ -103,16 +128,16 @@
 
 		<div class="form-group form-check-inline">
 			<label for="inputhelicopteraccess">Dostęp do helikoptera</label>&nbsp
-			<input type="radio" name="helicopterAccess" value="<%= helicopterAccess %>" class="form-check-input" autocomplete="off" required>Tak
+			<input type="radio" name="helicopterAccess" value="true" class="form-check-input" autocomplete="off" required>Tak
 			&nbsp
-			<input type="radio" name="helicopterAccess" value="<%= helicopterAccess %>" class="form-check-input" autocomplete="off" required>Nie
+			<input type="radio" name="helicopterAccess" value="false" class="form-check-input" autocomplete="off" required>Nie
         </div>
-
+        <br>
 		<div class="form-group form-check-inline">
 			<label for="inputteachinghospital">Szpital organizujący praktyki</label>&nbsp;
-			<input type="radio" name="teachingHospital" value="<%= teachingHospital %>" class="form-check-input" autocomplete="off" required>Tak
+			<input type="radio" name="teachingHospital" value="true" class="form-check-input" autocomplete="off" required>Tak
 			&nbsp
-			<input type="radio" name="teachingHospital" value="<%= teachingHospital %>" class="form-check-input" autocomplete="off" required>Nie
+			<input type="radio" name="teachingHospital" value="false" class="form-check-input" autocomplete="off" required>Nie
         </div>
 
 		<div class="mb-3">

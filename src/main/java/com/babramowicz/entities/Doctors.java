@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "doctors")
 @Data
-@AllArgsConstructor
 public class Doctors implements Serializable {
 
     @Id
@@ -32,12 +31,26 @@ public class Doctors implements Serializable {
     @Column(name = "Nationality")
     private String nationality;
     @Column(name = "Speciality")
-    private Boolean speciality;
+    private String speciality;
     @Column(name = "Date of Birth")
     private LocalDate dateOfBirth;
     @Column(name = "Is a Teacher")
     private Boolean isATeacher;
 
     public Doctors() {
+    }
+
+    public Doctors(Integer id, String name, String surname, String title, String licenseNumber, String phone, String email, String nationality, String speciality, LocalDate dateOfBirth, Boolean isATeacher) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.title = title;
+        this.licenseNumber = licenseNumber;
+        this.phone = phone;
+        this.email = email;
+        this.nationality = nationality;
+        this.speciality = speciality;
+        this.dateOfBirth = dateOfBirth;
+        this.isATeacher = isATeacher;
     }
 }
