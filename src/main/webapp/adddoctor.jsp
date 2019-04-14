@@ -132,7 +132,7 @@
         </div>
         <div class="form-group">
         	<label for="inputdateofbirth">Specjalizacja</label>
-        	<input type="date" name="dateOfBirth" value="<%= dateOfBirth %>" class="form-control" id="inputdateofbirth" placeholder="Specjalizacja" required>
+        	<input type="date" name="dateOfBirth" value="<%= dateOfBirth %>" class="form-control" id="inputdateofbirth" placeholder="Data urodzenia" required>
         </div>
 
 		<div class="form-group form-check-inline">
