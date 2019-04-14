@@ -2,9 +2,7 @@ package com.babramowicz.dao;
 
 
 import com.babramowicz.entities.Doctors;
-import com.babramowicz.entities.Hospitals;
 import org.hibernate.Session;
-
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;

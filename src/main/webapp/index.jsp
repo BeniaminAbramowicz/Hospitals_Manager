@@ -27,7 +27,7 @@
 
             <footer class="container-fluid w-100 py-2 bg-dark">
               <div class="container">
-                <p class="m-0 text-center text-white">Hospitals Management</p>
+                <p class="m-0 text-center text-white">Zarządzanie szpitalami</p>
               </div>
             </footer>
 

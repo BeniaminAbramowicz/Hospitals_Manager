@@ -6,16 +6,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Dodawanie szpitali">
-  	<meta name="keywords" content="szpital, dodawanie">
+    <meta name="description" content="Wyświetlanie listy szpitali">
+  	<meta name="keywords" content="szpital, lista, wyświetlanie">
     <meta name="author" content="BA">
   	<meta http-equiv="X-Ua-Compatible" content="IE=edge">
 
-    <title>Hospitals Management</title>
+    <title>Lista szpitali</title>
 
     <!-- Styles -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-	  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
   </head>
 
   <body>
@@ -93,7 +93,7 @@
 
         <footer class="container-fluid w-100 py-2 bg-dark">
               <div class="container">
-                <p class="m-0 text-center text-white">Hospitals Management</p>
+                <p class="m-0 text-center text-white">Zarządzanie szpitalami</p>
               </div>
             </footer>
 

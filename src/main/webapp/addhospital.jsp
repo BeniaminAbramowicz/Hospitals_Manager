@@ -2,9 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pl">
-
-  <!-- Head -->
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Dodawanie szpitali">
@@ -12,65 +10,58 @@
     <meta name="author" content="BA">
   	<meta http-equiv="X-Ua-Compatible" content="IE=edge">
 
-    <title>Hospitals Management</title>
+    <title>Dodawanie szpitala</title>
 
-    <!-- Styles -->
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-	  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
-	  <script type="text/javascript">
-	  document.addEventListener("DOMContentLoaded", function(){
-      var a = document.getElementById("inputname").value;
-      var b = document.getElementById("inputcountry").value;
-      var c = document.getElementById("inputtown").value;
-      var d = document.getElementById("inputstreet").value;
-      var e = document.getElementById("inputpostalcode").value;
-      var f = document.getElementById("inputphonenumber").value;
-      var g = document.getElementById("inputfaxnumber").value;
-      var h = document.getElementById("inputnumberofambulances").value;
-      if(a == "null"){
-            document.getElementById("inputname").value = "";
-      }
-      if(b == "null"){
-            document.getElementById("inputcountry").value = "";
-      }
-      if(c == "null"){
-            document.getElementById("inputtown").value = "";
-      }
-      if(d == "null"){
-            document.getElementById("inputstreet").value = "";
-      }
-      if(e == "null"){
-            document.getElementById("inputpostalcode").value = "";
-      }
-      if(f == "null"){
-            document.getElementById("inputphonenumber").value = "";
-      }
-      if(g == "null"){
-            document.getElementById("inputfaxnumber").value = "";
-      }
-      if(h == "null"){
-            document.getElementById("inputnumberofambulances").value = "";
-      }
-      });
-      </script>
-  </head>
-
-  <body>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+	 <script type="text/javascript">
+	 document.addEventListener("DOMContentLoaded", function(){
+     var a = document.getElementById("inputname").value;
+     var b = document.getElementById("inputcountry").value;
+     var c = document.getElementById("inputtown").value;
+     var d = document.getElementById("inputstreet").value;
+     var e = document.getElementById("inputpostalcode").value;
+     var f = document.getElementById("inputphonenumber").value;
+     var g = document.getElementById("inputfaxnumber").value;
+     var h = document.getElementById("inputnumberofambulances").value;
+     if(a == "null"){
+           document.getElementById("inputname").value = "";
+     }
+     if(b == "null"){
+           document.getElementById("inputcountry").value = "";
+     }
+     if(c == "null"){
+           document.getElementById("inputtown").value = "";
+     }
+     if(d == "null"){
+           document.getElementById("inputstreet").value = "";
+     }
+     if(e == "null"){
+           document.getElementById("inputpostalcode").value = "";
+     }
+     if(f == "null"){
+           document.getElementById("inputphonenumber").value = "";
+     }
+     if(g == "null"){
+           document.getElementById("inputfaxnumber").value = "";
+     }
+     if(h == "null"){
+           document.getElementById("inputnumberofambulances").value = "";
+     }
+     });
+     </script>
+</head>
+<body>
   <wrapper class="d-flex flex-column">
-
-    <!-- Navbar -->
-        <%@include file="incl/nav.app"%>
-
-    <!-- Content -->
-    <main class="container-fluid py-3 flex-fill">
-      <div class="container">
-
-
-<div class="col-md-8 offset-2">
-<div class="card border-primary">
-<h4 class="card-header">Dodaj nowy szpital</h4>
-<div class="card-body">
-    <form action="addhospital" method="post" id="add">
+  <%@include file="incl/nav.app"%>
+  <main class="container-fluid py-3 flex-fill">
+    <div class="container">
+    <div class="col-md-8 offset-2">
+    <div class="card border-primary">
+    <h4 class="card-header">Dodaj nowy szpital</h4>
+    <div class="card-body">
+        <form action="addhospital" method="post" id="add">
                     <p style="color:red">${errorname}</p>
                     <p style="color:red">${errorcountry}</p>
                     <p style="color:red">${errortown}</p>
@@ -134,7 +125,7 @@
         </div>
         <br>
 		<div class="form-group form-check-inline">
-			<label for="inputteachinghospital">Szpital organizujący praktyki</label>&nbsp;
+			<label for="inputteachinghospital">Szpital prowadzący praktyki</label>&nbsp;
 			<input type="radio" name="teachingHospital" value="true" class="form-check-input" autocomplete="off" required>Tak
 			&nbsp
 			<input type="radio" name="teachingHospital" value="false" class="form-check-input" autocomplete="off" required>Nie
@@ -151,19 +142,19 @@
 </div>
 
 
-      </div>
-    </main>
+</div>
+</main>
 
 
-    <footer class="container-fluid w-100 py-2 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Hospitals Management</p>
-      </div>
-    </footer>
+<footer class="container-fluid w-100 py-2 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Zarządzanie szpitalami</p>
+    </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  </wrapper>
-  </body>
+</wrapper>
+</body>
 </html>

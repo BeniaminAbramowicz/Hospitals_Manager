@@ -1,6 +1,6 @@
 package com.babramowicz.servlets;
 
-import com.babramowicz.dao.HospitalsRepositoryDao;
+import com.babramowicz.dao.DoctorsRepositoryDao;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-@WebServlet("/deletehospital")
-public class DeleteHospitalServlet extends HttpServlet {
+@WebServlet("/deletedoctor")
+public class DeleteDoctorServlet extends HttpServlet {
 
     @EJB
-    HospitalsRepositoryDao hospitalsDao;
+    DoctorsRepositoryDao doctorsDao;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,8 +24,8 @@ public class DeleteHospitalServlet extends HttpServlet {
 
         String id = req.getParameter("id");
 
-        hospitalsDao.deleteHospitalById(Integer.parseInt(id));
+        doctorsDao.deleteDoctorById(Integer.parseInt(id));
 
-        resp.sendRedirect("hospitals");
+        resp.sendRedirect("doctors");
     }
 }

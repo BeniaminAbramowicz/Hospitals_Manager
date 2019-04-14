@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 @WebServlet("/addhospital")
 public class AddHospitalServlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(AddHospitalServlet.class.getName());
+
 
     @EJB
     HospitalsRepositoryDao hospitalsDao;
@@ -45,7 +45,7 @@ public class AddHospitalServlet extends HttpServlet {
         String helicopterAccess = req.getParameter("helicopterAccess");
         String teachingHospital = req.getParameter("teachingHospital");
         Hospitals hospital = new Hospitals(name, country, town, street, postalCode, phoneNumber, faxNumber, Integer.parseInt(numberOfAmbulances), Boolean.valueOf(helicopterAccess), Boolean.valueOf(teachingHospital));
-        LOGGER.info("New hospital added: " + hospital);
+
 
         Hospitals hospitalTemp = hospitalsDao.getHospitalByName(name);
 

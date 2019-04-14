@@ -8,11 +8,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Edycja szpitala">
-  	<meta name="keywords" content="szpital, dodawanie">
+  	<meta name="keywords" content="szpital, edycja">
     <meta name="author" content="BA">
   	<meta http-equiv="X-Ua-Compatible" content="IE=edge">
 
-    <title>Hospitals Management</title>
+    <title>Edycja szpitala</title>
 
     <!-- Styles -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -91,7 +91,7 @@
         </div>
 
 		<div class="form-group form-check-inline">
-			<label for="inputteachinghospital">Szpital organizujący praktyki</label>&nbsp;
+			<label for="inputteachinghospital">Szpital prowadzący praktyki</label>&nbsp;
 			<input type="radio" name="teachingHospital" value="true" class="form-check-input"  <c:if test="${hospital.teachingHospital == true}">checked</c:if>>Tak
 			&nbsp
 			<input type="radio" name="teachingHospital" value="false" class="form-check-input" <c:if test="${hospital.teachingHospital == false}">checked</c:if> >Nie
@@ -114,7 +114,7 @@
 
     <footer class="container-fluid w-100 py-2 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Hospitals Management</p>
+        <p class="m-0 text-center text-white">Zarządzanie szpitalami</p>
       </div>
     </footer>
 
