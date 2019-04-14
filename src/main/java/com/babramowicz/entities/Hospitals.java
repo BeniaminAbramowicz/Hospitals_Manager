@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Hospitals implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
     @Column(name = "Name")
@@ -29,11 +29,27 @@ public class Hospitals implements Serializable {
     @Column(name = "FaxNumber")
     private String faxNumber;
     @Column(name = "NumberOfAmbulances")
-    private String numberOfAmbulances;
+    private Integer numberOfAmbulances;
     @Column(name = "HelicopterAccess")
     private Boolean helicopterAccess;
     @Column(name = "TeachingHospital")
     private Boolean teachingHospital;
+
+    public Hospitals() {
+    }
+
+    public Hospitals(String name, String country, String town, String street, String postalCode, String phoneNumber, String faxNumber, Integer numberOfAmbulances, Boolean helicopterAccess, Boolean teachingHospital) {
+        this.name = name;
+        this.country = country;
+        this.town = town;
+        this.street = street;
+        this.postalCode = postalCode;
+        this.phoneNumber = phoneNumber;
+        this.faxNumber = faxNumber;
+        this.numberOfAmbulances = numberOfAmbulances;
+        this.helicopterAccess = helicopterAccess;
+        this.teachingHospital = teachingHospital;
+    }
 
 
 }

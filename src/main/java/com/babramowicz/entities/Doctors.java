@@ -37,4 +37,7 @@ public class Doctors implements Serializable {
     private LocalDate dateOfBirth;
     @Column(name = "Is a Teacher")
     private Boolean isATeacher;
+
+    public Doctors() {
+    }
 }
