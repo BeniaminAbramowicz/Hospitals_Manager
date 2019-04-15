@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="${pageContext.request.contextPath}/index.jsp">Strona główna
                 <span class="sr-only">(current)</span>
               </a>
@@ -27,7 +27,10 @@
               <a class="nav-link" href="${pageContext.request.contextPath}/adddoctor">Dodaj lekarza</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Zatrudnij lekarza</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/hiredlist">Lista zatrudnionych lekarzy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="${pageContext.request.contextPath}/hiredoctor">Zatrudnij lekarza</a>
             </li>
           </ul>
         </div>

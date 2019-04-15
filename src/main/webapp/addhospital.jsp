@@ -53,14 +53,16 @@
      </script>
 </head>
 <body>
-  <wrapper class="d-flex flex-column">
-  <%@include file="incl/nav.app"%>
-  <main class="container-fluid py-3 flex-fill">
-    <div class="container">
-    <div class="col-md-8 offset-2">
-    <div class="card border-primary">
-    <h4 class="card-header">Dodaj nowy szpital</h4>
-    <div class="card-body">
+
+<wrapper class="d-flex flex-column">
+<%@include file="incl/nav.app"%>
+
+<main class="container-fluid py-3 flex-fill">
+<div class="container">
+<div class="col-md-8 offset-2">
+<div class="card border-danger rounded-0">
+<h4 class="card-header bg-danger">Dodaj nowy szpital</h4>
+<div class="card-body">
         <form action="addhospital" method="post" id="add">
                     <p style="color:red">${errorname}</p>
                     <p style="color:red">${errorcountry}</p>
@@ -133,7 +135,7 @@
 
 		<div class="mb-3">
 		<br>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Dodaj Szpital</button>
+        <button class="btn btn-danger btn-lg btn-block" type="submit">Dodaj Szpital</button>
 		</div>
 
     </form>

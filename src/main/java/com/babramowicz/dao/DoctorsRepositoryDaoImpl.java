@@ -62,6 +62,7 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
 
     @Override
     public Doctors addNewDoctor(Doctors doctor) {
+
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
@@ -75,6 +76,7 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
 
     @Override
     public void deleteDoctorById(int id) {
+
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
@@ -86,6 +88,7 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
 
     @Override
     public void updateDoctor(Integer id, String name, String surname, String title, String licenseNumber, String phone, String email, String nationality, String speciality, LocalDate dateOfBirth, Boolean isATeacher) {
+
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 

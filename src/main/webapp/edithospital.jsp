@@ -23,10 +23,9 @@
 
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
-
 <div class="col-md-8 offset-2">
-<div class="card border-primary">
-<h4 class="card-header">Edytuj szpital</h4>
+<div class="card border-danger rounded-0">
+<h4 class="card-header bg-danger">Edytuj szpital</h4>
 <div class="card-body">
     <form action="edithospital" method="post" id="add">
             <p style="color:red">${errorname}</p>
@@ -40,8 +39,8 @@
             <p style="color:red">${errorhelicopteraccess}</p>
             <p style="color:red">${errorteachinghospital}</p>
             <p style="color:red">${errorhospitalexists}</p>
-    <input type="hidden" name="id" value="${hospital.id}">
 
+    <input type="hidden" name="id" value="${hospital.id}">
         <div class="form-group">
             <label for="inputname">Nazwa szpitala</label><br>
             <input type="text" name="name" value="${hospital.name}" class="form-control" id="inputname" placeholder="Nazwa Szpitala" required>
@@ -93,7 +92,7 @@
 
 		<div class="mb-3">
 		<br>
-        <button class="btn btn-primary btn-lg btn-block" id="edithospital" type="submit">Edit Hospital</button>
+        <button class="btn btn-danger btn-lg btn-block" id="edithospital" type="submit">Edytuj szpital</button>
 		</div>
 
     </form>

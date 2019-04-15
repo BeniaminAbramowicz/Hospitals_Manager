@@ -18,15 +18,13 @@
 <body>
 <wrapper class="d-flex flex-column">
 
-
 <%@include file="incl/nav.app"%>
 
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
-
 <div class="col-md-8 offset-2">
-<div class="card border-primary">
-<h4 class="card-header">Edytuj szpital</h4>
+<div class="card border-danger rounded-0">
+<h4 class="card-header bg-danger">Edytuj lekarza</h4>
 <div class="card-body">
     <form action="editdoctor" method="post" id="add">
             <p style="color:red">${errorname}</p>
@@ -57,7 +55,7 @@
         </div>
 		<div class="form-group">
 			<label for="inputlicensenumber">Numer licencji</label>
-			<input type="text" name="licenseNumber" value="${doctor.licensenumber}" class="form-control" id="inputlicensenumber" placeholder="Numer licencji" required>
+			<input type="text" name="licenseNumber" value="${doctor.licenseNumber}" class="form-control" id="inputlicensenumber" placeholder="Numer licencji" required>
         </div>
 		<div class="form-group">
 			<label for="inputphone">Telefon</label>
@@ -66,7 +64,7 @@
 
 		<div class="form-group">
 			<label for="inputemail">Adres e-mail</label>
-			<input type="text" name="email" value="${doctor.email}" class="form-control" id="inputemail" placeholder="Adres e-mail" required>
+			<input type="email" name="email" value="${doctor.email}" class="form-control" id="inputemail" placeholder="Adres e-mail" required>
         </div>
 		<div class="form-group">
 			<label for="inputnationality">Narodowość</label>
@@ -83,7 +81,7 @@
         </div>
 
 		<div class="form-group form-check-inline">
-			<label for="inputisateacher">Szpital prowadzący praktyki</label>&nbsp;
+			<label for="inputisateacher">Nauczyciel</label>&nbsp;
 			<input type="radio" name="isATeacher" value="true" class="form-check-input"  <c:if test="${doctor.isATeacher == true}">checked</c:if>>Tak
 			&nbsp
 			<input type="radio" name="isATeacher" value="false" class="form-check-input" <c:if test="${doctor.isATeacher == false}">checked</c:if> >Nie
@@ -91,7 +89,7 @@
 
 		<div class="mb-3">
 		<br>
-        <button class="btn btn-primary btn-lg btn-block" id="editdoctor" type="submit">Edit Hospital</button>
+        <button class="btn btn-danger btn-lg btn-block" id="editdoctor" type="submit">Edytuj lekarza</button>
 		</div>
     </form>
 </div>
