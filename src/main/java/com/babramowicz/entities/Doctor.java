@@ -1,42 +1,33 @@
 package com.babramowicz.entities;
 
-import lombok.Data;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @Entity
 @Table(name = "doctors")
-@Data
 public class Doctors implements Serializable {
 
 
     private Integer id;
-
     private String name;
-
     private String surname;
-
     private String title;
-
     private String licenseNumber;
-
     private String phone;
-
     private String email;
-
     private String nationality;
-
     private String speciality;
-
     private LocalDate dateOfBirth;
-
     private Boolean isATeacher;
-
-    private Set<HospitalDoctors> hospitalDoctors;
+    private List<HospitalDoctors> hospitalDoctors = new LinkedList<>();
 
 
     public Doctors() {
@@ -69,7 +60,7 @@ public class Doctors implements Serializable {
         this.isATeacher = isATeacher;
     }
 
-    public Doctors(String name, String surname, String title, String licenseNumber, String phone, String email, String nationality, String speciality, LocalDate dateOfBirth, Boolean isATeacher, Set<HospitalDoctors> hospitalDoctors) {
+    public Doctors(String name, String surname, String title, String licenseNumber, String phone, String email, String nationality, String speciality, LocalDate dateOfBirth, Boolean isATeacher, List<HospitalDoctors> hospitalDoctors) {
         this.name = name;
         this.surname = surname;
         this.title = title;
@@ -84,10 +75,11 @@ public class Doctors implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Idd")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    @Column(name = "Idd", nullable = false)
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -96,7 +88,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "Name")
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -105,7 +97,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "Surname")
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     public void setSurname(String surname) {
@@ -114,7 +106,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "Title")
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -123,7 +115,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "LicenseNumber")
     public String getLicenseNumber() {
-        return licenseNumber;
+        return this.licenseNumber;
     }
 
     public void setLicenseNumber(String licenseNumber) {
@@ -132,7 +124,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "Phone")
     public String getPhone() {
-        return phone;
+        return this.phone;
     }
 
     public void setPhone(String phone) {
@@ -141,7 +133,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "Email")
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -150,7 +142,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "Nationality")
     public String getNationality() {
-        return nationality;
+        return this.nationality;
     }
 
     public void setNationality(String nationality) {
@@ -159,7 +151,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "Speciality")
     public String getSpeciality() {
-        return speciality;
+        return this.speciality;
     }
 
     public void setSpeciality(String speciality) {
@@ -168,7 +160,7 @@ public class Doctors implements Serializable {
 
     @Column(name = "DateofBirth")
     public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+        return this.dateOfBirth;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
@@ -176,20 +168,21 @@ public class Doctors implements Serializable {
     }
 
     @Column(name = "IsaTeacher")
-    public Boolean getATeacher() {
-        return isATeacher;
+    public Boolean getIsATeacher() {
+        return this.isATeacher;
     }
 
-    public void setATeacher(Boolean ATeacher) {
-        isATeacher = ATeacher;
+    public void setIsATeacher(Boolean isATeacher) {
+        this.isATeacher = isATeacher;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.doctor", cascade = CascadeType.ALL)
-    public Set<HospitalDoctors> getHospitalDoctors() {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.doctor", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
+    public List<HospitalDoctors> getHospitalDoctors() {
         return hospitalDoctors;
     }
 
-    public void setHospitalDoctors(Set<HospitalDoctors> hospitalDoctors) {
+    public void setHospitalDoctors(List<HospitalDoctors> hospitalDoctors) {
         this.hospitalDoctors = hospitalDoctors;
     }
 

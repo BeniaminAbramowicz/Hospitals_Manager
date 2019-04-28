@@ -1,25 +1,17 @@
 package com.babramowicz.entities;
 
-import lombok.Data;
+
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
-@Table(name = "hospitals", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "Name"),
-        @UniqueConstraint(columnNames = "Country"),
-        @UniqueConstraint(columnNames = "Town"),
-        @UniqueConstraint(columnNames = "Street"),
-        @UniqueConstraint(columnNames = "PostalCode"),
-        @UniqueConstraint(columnNames = "PhoneNumber"),
-        @UniqueConstraint(columnNames = "FaxNumber"),
-        @UniqueConstraint(columnNames = "NumberOfAmbulances"),
-        @UniqueConstraint(columnNames = "HelicopterAccess"),
-        @UniqueConstraint(columnNames = "TeachingHospital"),
-        })
-@Data
+@Table(name = "hospitals")
 public class Hospitals implements Serializable {
 
     private Integer id;
@@ -33,7 +25,7 @@ public class Hospitals implements Serializable {
     private Integer numberOfAmbulances;
     private Boolean helicopterAccess;
     private Boolean teachingHospital;
-    private Set<HospitalDoctors> hospitalDoctors;
+    private List<HospitalDoctors> hospitalDoctors = new LinkedList<>();
 
     public Hospitals() {
     }
@@ -65,7 +57,7 @@ public class Hospitals implements Serializable {
         this.teachingHospital = teachingHospital;
     }
 
-    public Hospitals(String name, String country, String town, String street, String postalCode, String phoneNumber, String faxNumber, Integer numberOfAmbulances, Boolean helicopterAccess, Boolean teachingHospital, Set<HospitalDoctors> hospitalDoctors) {
+    public Hospitals(String name, String country, String town, String street, String postalCode, String phoneNumber, String faxNumber, Integer numberOfAmbulances, Boolean helicopterAccess, Boolean teachingHospital, List<HospitalDoctors> hospitalDoctors) {
         this.name = name;
         this.country = country;
         this.town = town;
@@ -80,10 +72,11 @@ public class Hospitals implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Idh")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    @Column(name = "Idh", nullable = false)
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -92,7 +85,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "Name")
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -101,7 +94,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "Country")
     public String getCountry() {
-        return country;
+        return this.country;
     }
 
     public void setCountry(String country) {
@@ -110,7 +103,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "Town")
     public String getTown() {
-        return town;
+        return this.town;
     }
 
     public void setTown(String town) {
@@ -119,7 +112,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "Street")
     public String getStreet() {
-        return street;
+        return this.street;
     }
 
     public void setStreet(String street) {
@@ -128,7 +121,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "PostalCode")
     public String getPostalCode() {
-        return postalCode;
+        return this.postalCode;
     }
 
     public void setPostalCode(String postalCode) {
@@ -137,7 +130,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "PhoneNumber")
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -146,7 +139,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "FaxNumber")
     public String getFaxNumber() {
-        return faxNumber;
+        return this.faxNumber;
     }
 
     public void setFaxNumber(String faxNumber) {
@@ -155,7 +148,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "NumberOfAmbulances")
     public Integer getNumberOfAmbulances() {
-        return numberOfAmbulances;
+        return this.numberOfAmbulances;
     }
 
     public void setNumberOfAmbulances(Integer numberOfAmbulances) {
@@ -164,7 +157,7 @@ public class Hospitals implements Serializable {
 
     @Column(name = "HelicopterAccess")
     public Boolean getHelicopterAccess() {
-        return helicopterAccess;
+        return this.helicopterAccess;
     }
 
     public void setHelicopterAccess(Boolean helicopterAccess) {
@@ -173,19 +166,20 @@ public class Hospitals implements Serializable {
 
     @Column(name = "TeachingHospital")
     public Boolean getTeachingHospital() {
-        return teachingHospital;
+        return this.teachingHospital;
     }
 
     public void setTeachingHospital(Boolean teachingHospital) {
         this.teachingHospital = teachingHospital;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.hospital", cascade = CascadeType.ALL)
-    public Set<HospitalDoctors> getHospitalDoctors() {
-        return hospitalDoctors;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.hospital", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
+    public List<HospitalDoctors> getHospitalDoctors() {
+        return this.hospitalDoctors;
     }
 
-    public void setHospitalDoctors(Set<HospitalDoctors> hospitalDoctors) {
+    public void setHospitalDoctors(List<HospitalDoctors> hospitalDoctors) {
         this.hospitalDoctors = hospitalDoctors;
     }
 
