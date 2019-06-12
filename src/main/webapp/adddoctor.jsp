@@ -124,7 +124,7 @@
 			<input type="text" name="speciality" value="<%= speciality %>" class="form-control" id="inputspeciality" placeholder="Specjalizacja" required>
         </div>
         <div class="form-group">
-        	<label for="inputdateofbirth">Specjalizacja</label>
+        	<label for="inputdateofbirth">Data urodzenia</label>
         	<input type="date" name="dateOfBirth" value="<%= dateOfBirth %>" class="form-control" id="inputdateofbirth" placeholder="Data urodzenia" required>
         </div>
 
@@ -134,9 +134,8 @@
 			&nbsp
 			<input type="radio" name="isATeacher" value="false" class="form-check-input" autocomplete="off" required>Nie
         </div>
-
+        <br>
 		<div class="mb-3">
-		<br>
         <button class="btn btn-danger btn-lg btn-block" type="submit">Dodaj Lekarza</button>
 		</div>
 

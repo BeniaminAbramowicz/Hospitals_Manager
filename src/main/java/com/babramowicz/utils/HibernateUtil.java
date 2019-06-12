@@ -1,7 +1,7 @@
 package com.babramowicz.utils;
 
-import com.babramowicz.entities.Doctors;
-import com.babramowicz.entities.Hospitals;
+import com.babramowicz.entities.Doctor;
+import com.babramowicz.entities.Hospital;
 import com.babramowicz.entities.HospitalDoctors;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,8 +14,8 @@ public class HibernateUtil {
         try {
             Configuration conf = new Configuration();
             conf.configure("hibernate.cfg.xml");
-            conf.addAnnotatedClass(Hospitals.class);
-            conf.addAnnotatedClass(Doctors.class);
+            conf.addAnnotatedClass(Hospital.class);
+            conf.addAnnotatedClass(Doctor.class);
             conf.addAnnotatedClass(HospitalDoctors.class);
             SessionFactory sessionFactory = conf.buildSessionFactory();
             return sessionFactory;

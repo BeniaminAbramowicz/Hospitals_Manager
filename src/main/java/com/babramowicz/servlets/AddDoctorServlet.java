@@ -1,7 +1,7 @@
 package com.babramowicz.servlets;
 
 import com.babramowicz.dao.DoctorsRepositoryDao;
-import com.babramowicz.entities.Doctors;
+import com.babramowicz.entities.Doctor;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
@@ -48,7 +48,7 @@ public class AddDoctorServlet extends HttpServlet {
         LocalDate birth = LocalDate.parse(dateOfBirth);
 
 
-        Doctors doctorTemp = doctorsDao.getDoctorByLicenseNumber(licenseNumber);
+        Doctor doctorTemp = doctorsDao.getDoctorByLicenseNumber(licenseNumber);
 
         String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern p = Pattern.compile(regex);
@@ -89,7 +89,7 @@ public class AddDoctorServlet extends HttpServlet {
             req.setAttribute("errordoctorexists", "Lekarz o tym numerze licencji już istnieje");
             req.getRequestDispatcher("adddoctor.jsp").forward(req, resp);
         } else {
-            Doctors doctor = new Doctors(name, surname, title, licenseNumber, phone, email, nationality, speciality, LocalDate.parse(dateOfBirth), Boolean.valueOf(isATeacher));
+            Doctor doctor = new Doctor(name, surname, title, licenseNumber, phone, email, nationality, speciality, LocalDate.parse(dateOfBirth), Boolean.valueOf(isATeacher));
             doctorsDao.addNewDoctor(doctor);
             resp.sendRedirect("doctors");
             req.getRequestDispatcher("adddoctor.jsp").forward(req, resp);

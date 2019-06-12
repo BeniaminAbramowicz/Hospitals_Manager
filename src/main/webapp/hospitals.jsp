@@ -27,23 +27,25 @@
 <table class="table table-responsive table-sm">
             <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Country</th>
-                <th scope="col">Town</th>
-                <th scope="col">Street</th>
-                <th scope="col">Postal Code</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Fax Number</th>
-                <th scope="col">Number of ambulances</th>
-                <th scope="col">Helicopter Access</th>
-                <th scope="col">Teaching Hospital</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th scope="col">Identyfikator</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Państwo</th>
+                <th scope="col">Miasto</th>
+                <th scope="col">Ulica</th>
+                <th scope="col">Kod pocztowy</th>
+                <th scope="col">Numer telefonu</th>
+                <th scope="col">Number faksu</th>
+                <th scope="col">Liczba karetek</th>
+                <th scope="col">Lądowisko dla helikopterów</th>
+                <th scope="col">Szpital prowadzący praktyki</th>
+                <th scope="col">Edytuj</th>
+                <th scope="col">Usuń</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="hospital" items="${hospitalsList}">
                 <tr>
+                    <td>${hospital.id}</td>
                     <td>${hospital.name}</td>
                     <td>${hospital.country}</td>
                     <td>${hospital.town}</td>
@@ -55,20 +57,20 @@
                     <td>
                     <c:choose>
                        <c:when test="${hospital.helicopterAccess == true}">
-                        YES
+                        Tak
                        </c:when>
                        <c:otherwise>
-                        NO
+                        Nie
                        </c:otherwise>
                      </c:choose>
                     </td>
                     <td>
                     <c:choose>
                         <c:when test="${hospital.teachingHospital == true}">
-                         YES
+                         Tak
                         </c:when>
                         <c:otherwise>
-                         NO
+                         Nie
                         </c:otherwise>
                      </c:choose>
                     </td>

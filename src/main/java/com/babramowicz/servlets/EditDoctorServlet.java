@@ -1,7 +1,7 @@
 package com.babramowicz.servlets;
 
 import com.babramowicz.dao.DoctorsRepositoryDao;
-import com.babramowicz.entities.Doctors;
+import com.babramowicz.entities.Doctor;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
@@ -26,7 +26,7 @@ public class EditDoctorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
 
-        Doctors doctorById = doctorsDao.getDoctorById(Integer.parseInt(id));
+        Doctor doctorById = doctorsDao.getDoctorById(Integer.parseInt(id));
 
         req.setAttribute("doctor", doctorById);
 
@@ -51,7 +51,7 @@ public class EditDoctorServlet extends HttpServlet {
         String dateOfBirth = req.getParameter("dateOfBirth");
         String isATeacher = req.getParameter("isATeacher");
 
-        LocalDate docyear = LocalDate.now().minusYears(25);
+        LocalDate docyear = LocalDate.now().minusYears(18);
         LocalDate birth = LocalDate.parse(dateOfBirth);
 
         String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
@@ -59,55 +59,55 @@ public class EditDoctorServlet extends HttpServlet {
         Matcher m = p.matcher(email);
         Boolean i = m.matches();
 
-        Doctors doctor = new Doctors(Integer.parseInt(id), name, surname, title, licenseNumber, phone, email, nationality, speciality, LocalDate.parse(dateOfBirth), Boolean.valueOf(isATeacher));
+        Doctor doctor = new Doctor(Integer.parseInt(id), name, surname, title, licenseNumber, phone, email, nationality, speciality, LocalDate.parse(dateOfBirth), Boolean.valueOf(isATeacher));
 
-        Doctors doctorTemp = doctorsDao.getDoctorByLicenseNumber(licenseNumber);
+        Doctor doctorTemp = doctorsDao.getDoctorByLicenseNumber(licenseNumber);
 
         if (name.length() > 30 || name == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errorname", "Imię może mieć maksymalnie 30 znaków nie może być puste");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (surname.length() > 40 || surname == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errorsurname", "Nazwisko może mieć maksymalnie 40 znaków i nie może być puste");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (title.length() > 100 || title == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errortitle", "Nazwa tytułu może mieć maksymalnie 100 znaków i nie może być pusta");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (StringUtils.isNumeric(licenseNumber) == false || licenseNumber.length() != 5 || licenseNumber == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errorlicensenumber", "Numer licencji musi mieć dokładnie 5 cyfr i nie może być pusta");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (StringUtils.isNumeric(phone) == false || phone.length() != 9 || phone == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errorphone", "Numer telefonu musi mieć dokładnie 9 cyfr i nie może być pusty");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (!i || email.length() > 50 || email == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("erroremail", "Email może zawierać maksymalnie 50 znaków w formacie xxxx@xxxx.xx i nie może być pusty");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (nationality.length() > 30 || nationality == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errornationality", "Narodowość może zawierać maksymalnie 30 znaków i nie może być pusta");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (speciality.length() > 30 || speciality == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errorspeciality", "Specjalizacja może zawierać maksymalnie 30 znaków nie może być pusta");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (birth.compareTo(docyear) > 0 || dateOfBirth == null ) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
-            req.setAttribute("errordateofbirth", "Data urodzenia nie może wskazywać na wiek mniejszy od 25 i nie może być pusta");
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
+            req.setAttribute("errordateofbirth", "Data urodzenia nie może wskazywać na wiek mniejszy od 18 i nie może być pusta");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (isATeacher == null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errorisateacher", "Należy zaznaczyć jedną z opcji dla nauczyciela");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else if (doctorTemp != null && doctor.getId() == doctorTemp.getId()) {
             doctorsDao.updateDoctor(Integer.parseInt(id), name, surname, title, licenseNumber, phone, email,nationality, speciality, LocalDate.parse(dateOfBirth), Boolean.valueOf(isATeacher));
             resp.sendRedirect("doctors");
         } else if (doctorTemp != null) {
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/editdoctor" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/editdoctor" + "?id=" + id);
             req.setAttribute("errordoctorexists", "Lekarz o tym numerze licencji już istnieje");
             req.getRequestDispatcher("editdoctor.jsp").forward(req, resp);
         } else {

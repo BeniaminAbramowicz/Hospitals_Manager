@@ -1,42 +1,47 @@
 package com.babramowicz.entities;
 
-import lombok.Data;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 
 @Entity
-@Table(name = "hospitaldoctors")
-@AssociationOverrides({
-        @AssociationOverride(name = "pk.hospital",
-                joinColumns = @JoinColumn(name = "Idh")),
-        @AssociationOverride(name = "pk.doctor",
-                joinColumns = @JoinColumn(name = "Idd"))
-})
-@Data
+@Table(name = "hospitaldoctor")
 public class HospitalDoctors implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer id;
-    private Integer idH;
-    private Integer idD;
-    private HospitalDoctorsId pk = new HospitalDoctorsId();
+
+    @ManyToOne
+    @JoinColumn(name = "Id_hospital")
+    private Hospital hospital;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_doctor")
+    private Doctor doctor;
+
+    @Column(name = "Contract_start_date")
     private LocalDate contractStartDate;
+    @Column(name = "Contract_end_date")
     private LocalDate contractEndDate;
+    @Column(name = "Position")
     private String position;
+    @Column(name = "Supervisor")
     private Boolean supervisor;
+    @Column(name = "Part_time")
     private Boolean partTime;
 
     public HospitalDoctors(){
 
     }
 
-    public HospitalDoctors(Integer id, Integer idH, Integer idD, LocalDate contractStartDate, LocalDate contractEndDate, String position, Boolean supervisor, Boolean partTime) {
-        this.id = id;
-        this.idH = idH;
-        this.idD = idD;
+    public HospitalDoctors(Hospital hospital, Doctor doctor, LocalDate contractStartDate, LocalDate contractEndDate, String position, Boolean supervisor, Boolean partTime){
+        this.hospital = hospital;
+        this.doctor = doctor;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
         this.position = position;
@@ -44,9 +49,7 @@ public class HospitalDoctors implements Serializable {
         this.partTime = partTime;
     }
 
-    public HospitalDoctors(Integer idH, Integer idD, LocalDate contractStartDate, LocalDate contractEndDate, String position, Boolean supervisor, Boolean partTime) {
-        this.idH = idH;
-        this.idD = idD;
+    public HospitalDoctors(LocalDate contractStartDate, LocalDate contractEndDate, String position, Boolean supervisor, Boolean partTime){
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
         this.position = position;
@@ -54,9 +57,6 @@ public class HospitalDoctors implements Serializable {
         this.partTime = partTime;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
     public Integer getId() {
         return id;
     }
@@ -64,51 +64,23 @@ public class HospitalDoctors implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    @Column(name = "Idh")
-    public Integer getIdh() {
-        return idH;
+
+    public Hospital getHospital() {
+        return hospital;
     }
 
-    public void setIdh(Integer idH) {
-        this.idH = idH;
-    }
-    @Column(name = "Idd")
-    public Integer getIdd() {
-        return idD;
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
 
-    public void setIdd(Integer idD) {
-        this.idD = idD;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    @EmbeddedId
-    public HospitalDoctorsId getPk() {
-        return pk;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public void setPk(HospitalDoctorsId pk) {
-        this.pk = pk;
-    }
-
-    @Transient
-    public Hospitals getHospital(){
-        return getPk().getHospital();
-    }
-
-    public void setHospital(Hospitals hospital){
-        getPk().setHospital(hospital);
-    }
-
-    @Transient
-    public Doctors getDoctor(){
-        return getPk().getDoctor();
-    }
-
-    public void setDoctor(Doctors doctor){
-        getPk().setDoctor(doctor);
-    }
-
-    @Column(name = "ContractStartDate")
     public LocalDate getContractStartDate() {
         return contractStartDate;
     }
@@ -117,7 +89,6 @@ public class HospitalDoctors implements Serializable {
         this.contractStartDate = contractStartDate;
     }
 
-    @Column(name = "ContractEndDate")
     public LocalDate getContractEndDate() {
         return contractEndDate;
     }
@@ -126,7 +97,6 @@ public class HospitalDoctors implements Serializable {
         this.contractEndDate = contractEndDate;
     }
 
-    @Column(name = "Position")
     public String getPosition() {
         return position;
     }
@@ -135,7 +105,6 @@ public class HospitalDoctors implements Serializable {
         this.position = position;
     }
 
-    @Column(name = "Supervisor")
     public Boolean getSupervisor() {
         return supervisor;
     }
@@ -144,7 +113,6 @@ public class HospitalDoctors implements Serializable {
         this.supervisor = supervisor;
     }
 
-    @Column(name = "PartTime")
     public Boolean getPartTime() {
         return partTime;
     }
@@ -154,16 +122,16 @@ public class HospitalDoctors implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HospitalDoctors that = (HospitalDoctors) o;
-        if(getPk() != null?!getPk().equals(that.getPk()) : that.getPk() != null) return false;
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return (getPk() != null? getPk().hashCode() : 0);
+    public String toString() {
+        return "HospitalDoctors{" +
+                "id=" + id +
+                ", hospital=" + hospital +
+                ", doctor=" + doctor+
+                ", contractStartDate=" + contractStartDate +
+                ", contractEndDate=" + contractEndDate +
+                ", position='" + position + '\'' +
+                ", supervisor=" + supervisor +
+                ", partTime=" + partTime +
+                '}';
     }
 }

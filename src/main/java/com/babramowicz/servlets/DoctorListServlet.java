@@ -1,7 +1,7 @@
 package com.babramowicz.servlets;
 
 import com.babramowicz.dao.DoctorsRepositoryDao;
-import com.babramowicz.entities.Doctors;
+import com.babramowicz.entities.Doctor;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ public class DoctorListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        List<Doctors> doctorsList = doctorsDao.getDoctorsList();
+        List<Doctor> doctorsList = doctorsDao.getDoctorsList();
         req.setAttribute("doctorsList", doctorsList);
         req.getRequestDispatcher("doctors.jsp").forward(req, resp);
     }

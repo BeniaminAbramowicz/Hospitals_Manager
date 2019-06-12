@@ -24,23 +24,25 @@
 <table class="table table-responsive table-sm">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">License Number</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">Identyfikator</th>
+                    <th scope="col">Imie</th>
+                    <th scope="col">Nazwisko</th>
+                    <th scope="col">Tytuł</th>
+                    <th scope="col">Numer licencji</th>
+                    <th scope="col">Telefon</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Nationality</th>
-                    <th scope="col">Speciality</th>
-                    <th scope="col">Date of birth</th>
-                    <th scope="col">Is a teacher</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Narodowość</th>
+                    <th scope="col">Specjalizacja</th>
+                    <th scope="col">Data urodzenia</th>
+                    <th scope="col">Nauczyciel</th>
+                    <th scope="col">Edytuj</th>
+                    <th scope="col">Usuń</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="doctor" items="${doctorsList}">
                     <tr>
+                        <td>${doctor.id}</td>
                         <td>${doctor.name}</td>
                         <td>${doctor.surname}</td>
                         <td>${doctor.title}</td>
@@ -53,10 +55,10 @@
                         <td>
                         <c:choose>
                            <c:when test="${doctor.isATeacher == true}">
-                            YES
+                            Tak
                            </c:when>
                            <c:otherwise>
-                            NO
+                            Nie
                            </c:otherwise>
                          </c:choose>
                         </td>
@@ -80,7 +82,7 @@
 
 <footer class="container-fluid w-100 py-2 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Hospitals Management</p>
+        <p class="m-0 text-center text-white">Zarządzanie szpitalami</p>
     </div>
 </footer>
 

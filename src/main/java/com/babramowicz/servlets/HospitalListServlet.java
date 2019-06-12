@@ -1,7 +1,7 @@
 package com.babramowicz.servlets;
 
 import com.babramowicz.dao.HospitalsRepositoryDao;
-import com.babramowicz.entities.Hospitals;
+import com.babramowicz.entities.Hospital;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,7 +23,7 @@ public class HospitalListServlet extends HttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8");
 
-        List<Hospitals> hospitalsList = hospitalsDao.getHospitalsList();
+        List<Hospital> hospitalsList = hospitalsDao.getHospitalsList();
         req.setAttribute("hospitalsList", hospitalsList);
         req.getRequestDispatcher("hospitals.jsp").forward(req, resp);
 

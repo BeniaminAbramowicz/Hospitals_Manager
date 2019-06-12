@@ -1,7 +1,7 @@
 package com.babramowicz.servlets;
 
 import com.babramowicz.dao.HospitalsRepositoryDao;
-import com.babramowicz.entities.Hospitals;
+import com.babramowicz.entities.Hospital;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +45,7 @@ public class AddHospitalServlet extends HttpServlet {
         String teachingHospital = req.getParameter("teachingHospital");
 
 
-        Hospitals hospitalTemp = hospitalsDao.getHospitalByName(name);
+        Hospital hospitalTemp = hospitalsDao.getHospitalByName(name);
 
         Pattern p = Pattern.compile("[0-9]{2}-[0-9]{3}");
         Matcher m = p.matcher(postalCode);
@@ -86,7 +85,7 @@ public class AddHospitalServlet extends HttpServlet {
             req.setAttribute("errorhospitalexists", "Szpital o tej nazwie już istnieje");
             req.getRequestDispatcher("addhospital.jsp").forward(req, resp);
         } else {
-            Hospitals hospital = new Hospitals(name, country, town, street, postalCode, phoneNumber, faxNumber, Integer.parseInt(numberOfAmbulances), Boolean.valueOf(helicopterAccess), Boolean.valueOf(teachingHospital));
+            Hospital hospital = new Hospital(name, country, town, street, postalCode, phoneNumber, faxNumber, Integer.parseInt(numberOfAmbulances), Boolean.valueOf(helicopterAccess), Boolean.valueOf(teachingHospital));
             hospitalsDao.addNewHospital(hospital);
             resp.sendRedirect("hospitals");
             req.getRequestDispatcher("addhospital.jsp").forward(req, resp);

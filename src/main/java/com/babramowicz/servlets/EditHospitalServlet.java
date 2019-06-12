@@ -1,7 +1,7 @@
 package com.babramowicz.servlets;
 
 import com.babramowicz.dao.HospitalsRepositoryDao;
-import com.babramowicz.entities.Hospitals;
+import com.babramowicz.entities.Hospital;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
@@ -24,7 +24,7 @@ public class EditHospitalServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
 
-        Hospitals hospitalById = hospitalsDao.getHospitalById(Integer.parseInt(id));
+        Hospital hospitalById = hospitalsDao.getHospitalById(Integer.parseInt(id));
 
         req.setAttribute("hospital", hospitalById);
 
@@ -50,59 +50,59 @@ public class EditHospitalServlet extends HttpServlet {
         String helicopterAccess = req.getParameter("helicopterAccess");
         String teachingHospital= req.getParameter("teachingHospital");
 
-        Hospitals hospitalTemp = hospitalsDao.getHospitalByName(name);
+        Hospital hospitalTemp = hospitalsDao.getHospitalByName(name);
 
-        Hospitals hospital = new Hospitals(Integer.parseInt(id), name, country, town, street, postalCode, phoneNumber, faxNumber, Integer.parseInt(numberOfAmbulances), Boolean.valueOf(helicopterAccess), Boolean.valueOf(teachingHospital));
+        Hospital hospital = new Hospital(Integer.parseInt(id), name, country, town, street, postalCode, phoneNumber, faxNumber, Integer.parseInt(numberOfAmbulances), Boolean.valueOf(helicopterAccess), Boolean.valueOf(teachingHospital));
 
         Pattern p = Pattern.compile("[0-9]{2}-[0-9]{3}");
         Matcher m = p.matcher(postalCode);
         Boolean i = m.matches();
 
         if(name.length() > 100 || name == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorname", "Nazwa szpitala może mieć maksymalnie 100 znaków nie może być pusta");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(country.length() > 30 || country == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorcountry", "Nazwa państwa może mieć maksymalnie 30 znaków i nie może być pusta");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(town.length() > 50 || town == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errortown", "Nazwa miasta może mieć maksymalnie 50 znaków i nie może być pusta");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(street.length() > 80 || street == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorstreet", "Nazwa ulicy może mieć maksymalnie 80 znaków i nie może być pusta");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(!i || postalCode.length() != 6 || postalCode == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorpostalcode", "Kod pocztowy musi mieć dokładnie 6 cyfr w formacie 00-000 i nie może być pusty");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(StringUtils.isNumeric(phoneNumber) == false || phoneNumber.length() != 9 || phoneNumber == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorphonenumber", "Numer telefonu musi zawierać dokładnie 9 cyfr i nie być pusty");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(StringUtils.isNumeric(faxNumber) == false || faxNumber.length() != 9 || faxNumber == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorfaxnumber", "Numer faksu musi zawierać dokładnie 9 cyfr i nie być pusty");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(numberOfAmbulances == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errornumberofambulances", "Liczba karetek nie może być pusta");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(helicopterAccess == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorhelicopteraccess", "Należy zaznaczyć jedną z opcji dla dostępu do helikopterów");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(teachingHospital == null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorteachinghospital", "Należy zaznaczyć jedną z opcji dla szpitala prowadzącego praktyki");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else if(hospitalTemp != null && hospital.getId() == hospitalTemp.getId()){
             hospitalsDao.updateHospital(Integer.parseInt(id), name, country, town, street, postalCode, phoneNumber, faxNumber, Integer.parseInt(numberOfAmbulances), Boolean.valueOf(helicopterAccess), Boolean.valueOf(teachingHospital));
             resp.sendRedirect("hospitals");
         } else if(hospitalTemp != null){
-            resp.setHeader("Refresh", "2; URL=/hospitalmanager/edithospital" + "?id=" + id);
+            resp.setHeader("Refresh", "2; URL=/manager2/edithospital" + "?id=" + id);
             req.setAttribute("errorhospitalexists", "Szpital o tej nazwie już istnieje");
             req.getRequestDispatcher("edithospital.jsp").forward(req, resp);
         } else {

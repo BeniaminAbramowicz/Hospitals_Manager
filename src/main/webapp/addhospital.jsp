@@ -120,7 +120,7 @@
         </div>
 
 		<div class="form-group form-check-inline">
-			<label for="inputhelicopteraccess">Dostęp do helikoptera</label>&nbsp
+			<label for="inputhelicopteraccess">Lądowisko dla helikopterów</label>&nbsp
 			<input type="radio" name="helicopterAccess" value="true" class="form-check-input" autocomplete="off" required>Tak
 			&nbsp
 			<input type="radio" name="helicopterAccess" value="false" class="form-check-input" autocomplete="off" required>Nie

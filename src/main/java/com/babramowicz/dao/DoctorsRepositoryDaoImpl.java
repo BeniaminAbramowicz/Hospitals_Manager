@@ -1,7 +1,7 @@
 package com.babramowicz.dao;
 
 
-import com.babramowicz.entities.Doctors;
+import com.babramowicz.entities.Doctor;
 import org.hibernate.Session;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
@@ -15,12 +15,12 @@ import static com.babramowicz.utils.HibernateUtil.getSessionFactory;
 public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
 
     @Override
-    public Doctors getDoctorById(int id) {
+    public Doctor getDoctorById(int id) {
 
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        Doctors doctor = session.get(Doctors.class, id);
+        Doctor doctor = session.get(Doctor.class, id);
 
         session.getTransaction().commit();
         session.close();
@@ -29,16 +29,16 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
     }
 
     @Override
-    public Doctors getDoctorByLicenseNumber(String licenseNumber) {
+    public Doctor getDoctorByLicenseNumber(String licenseNumber) {
 
-        Doctors doctor;
+        Doctor doctor;
         try {
             Session session = getSessionFactory().openSession();
             session.beginTransaction();
-            String select = "SELECT d from Doctors d WHERE licenseNumber=:licenseNumber";
+            String select = "SELECT d from Doctor d WHERE licenseNumber=:licenseNumber";
             Query query = session.createQuery(select);
             query.setParameter("licenseNumber", licenseNumber);
-            doctor = (Doctors) query.getSingleResult();
+            doctor = (Doctor) query.getSingleResult();
             session.getTransaction().commit();
             session.close();
             return doctor;
@@ -48,11 +48,11 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
     }
 
     @Override
-    public List<Doctors> getDoctorsList() {
+    public List<Doctor> getDoctorsList() {
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        List<Doctors> doctorsList = session.createQuery("SELECT d FROM Doctors d").getResultList();
+        List<Doctor> doctorsList = session.createQuery("SELECT d FROM Doctor d").getResultList();
 
         session.getTransaction().commit();
         session.close();
@@ -61,7 +61,7 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
     }
 
     @Override
-    public Doctors addNewDoctor(Doctors doctor) {
+    public Doctor addNewDoctor(Doctor doctor) {
 
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
@@ -80,7 +80,7 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        session.delete(session.get(Doctors.class, id));
+        session.delete(session.get(Doctor.class, id));
 
         session.getTransaction().commit();
         session.close();
@@ -92,7 +92,7 @@ public class DoctorsRepositoryDaoImpl implements DoctorsRepositoryDao{
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        String update = "UPDATE Doctors d SET d.name=:name, d.surname=:surname, d.title=:title, d.licenseNumber=:licenseNumber, d.phone=:phone, d.email=:email, d.nationality=:nationality, d.speciality=:speciality, d.dateOfBirth=:dateOfBirth, d.isATeacher=:isATeacher WHERE d.id=:id";
+        String update = "UPDATE Doctor d SET d.name=:name, d.surname=:surname, d.title=:title, d.licenseNumber=:licenseNumber, d.phone=:phone, d.email=:email, d.nationality=:nationality, d.speciality=:speciality, d.dateOfBirth=:dateOfBirth, d.isATeacher=:isATeacher WHERE d.id=:id";
         Query query = session.createQuery(update);
         query.setParameter("id", id);
         query.setParameter("name", name);

@@ -77,21 +77,20 @@
         </div>
 
 		<div class="form-group form-check-inline">
-			<label for="inputhelicopteraccess">Dostęp do helikoptera</label>&nbsp
+			<label for="inputhelicopteraccess">Lądowisko dla helikopterów</label>&nbsp
 			<input type="radio" name="helicopterAccess" value="true" class="form-check-input"  <c:if test="${hospital.helicopterAccess == true}">checked</c:if>>Tak
 			&nbsp
 			<input type="radio" name="helicopterAccess" value="false" class="form-check-input"  <c:if test="${hospital.helicopterAccess == false}">checked</c:if>>Nie
         </div>
-
+            <br>
 		<div class="form-group form-check-inline">
 			<label for="inputteachinghospital">Szpital prowadzący praktyki</label>&nbsp;
 			<input type="radio" name="teachingHospital" value="true" class="form-check-input"  <c:if test="${hospital.teachingHospital == true}">checked</c:if>>Tak
 			&nbsp
 			<input type="radio" name="teachingHospital" value="false" class="form-check-input" <c:if test="${hospital.teachingHospital == false}">checked</c:if> >Nie
         </div>
-
+            <br>
 		<div class="mb-3">
-		<br>
         <button class="btn btn-danger btn-lg btn-block" id="edithospital" type="submit">Edytuj szpital</button>
 		</div>
 

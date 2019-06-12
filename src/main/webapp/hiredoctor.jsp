@@ -14,48 +14,33 @@
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
-	  <script type="text/javascript">
+<script type="text/javascript">
           window.onload = function(){
-          var a = document.getElementById("inputname").value;
-          var b = document.getElementById("inputsurname").value;
-          var c = document.getElementById("inputtitle").value;
-          var d = document.getElementById("inputlicensenumber").value;
-          var e = document.getElementById("inputphone").value;
-          var f = document.getElementById("inputemail").value;
-          var g = document.getElementById("inputnationality").value;
-          var h = document.getElementById("inputspeciality").value;
-          var i = document.getElementById("inputdateofbirth").value;
+          var a = document.getElementById("inputidh").value;
+          var b = document.getElementById("inputidd").value;
+          var c = document.getElementById("inputcontractstartdate").value;
+          var d = document.getElementById("inputcontractenddate").value;
+          var e = document.getElementById("inputposition").value;
           if(a == "null"){
-                document.getElementById("inputname").value = "";
+                document.getElementById("inputidh").value = "";
           }
           if(b == "null"){
-                document.getElementById("inputsurname").value = "";
+                document.getElementById("inputidd").value = "";
           }
           if(c == "null"){
-                document.getElementById("inputtitle").value = "";
+                document.getElementById("inputcontractstartdate").value = "";
           }
           if(d == "null"){
-                document.getElementById("inputlicensenumber").value = "";
+                document.getElementById("inputcontractenddate").value = "";
           }
           if(e == "null"){
-                document.getElementById("inputphone").value = "";
+                document.getElementById("inputposition").value = "";
           }
-          if(f == "null"){
-                document.getElementById("inputemail").value = "";
-          }
-          if(g == "null"){
-                document.getElementById("inputnationality").value = "";
-          }
-          if(h == "null"){
-                document.getElementById("inputspeciality").value = "";
-          }
-          if(i == "null"){
-                document.getElementById("inputdateofbirth").value = "";
-          }
+
           }
       </script>
-</head>
 
+</head>
 <body>
 <wrapper class="d-flex flex-column">
 
@@ -68,48 +53,44 @@
 <h4 class="card-header bg-danger">Zatrudnij lekarza</h4>
 <div class="card-body">
     <form action="hiredoctor" method="post" id="add">
-                    <p style="color:red">${errorname}</p>
-                    <p style="color:red">${errorsurname}</p>
-                    <p style="color:red">${errortitle}</p>
-                    <p style="color:red">${errorlicensenumber}</p>
-                    <p style="color:red">${errorphone}</p>
-                    <p style="color:red">${erroremail}</p>
-                    <p style="color:red">${errornationality}</p>
-                    <p style="color:red">${errorspeciality}</p>
-                    <p style="color:red">${errordateofbirth}</p>
-                    <p style="color:red">${errorisateacher}</p>
-                    <p style="color:red">${errordoctorexists}</p>
+            <p style="color:red">${errorhospitalnotexists}</p>
+            <p style="color:red">${errordoctornotexists}</p>
+            <p style="color:red">${erroridhospital}</p>
+            <p style="color:red">${erroriddoctor}</p>
+            <p style="color:red">${errorstartdate}</p>
+            <p style="color:red">${errorenddate}</p>
+            <p style="color:red">${errorswitchdate}</p>
+            <p style="color:red">${errorposition}</p>
+            <p style="color:red">${errorsupervisor}</p>
+            <p style="color:red">${errorparttime}</p>
+            <p style="color:red">${errordoctorexists}</p>
 
-                    <% String name =  request.getParameter("name");
-                       String surname =  request.getParameter("surname");
-                       String title =  request.getParameter("title");
-                       String licenseNumber =  request.getParameter("licenseNumber");
-                       String phone =  request.getParameter("phone");
-                       String email =  request.getParameter("email");
-                       String nationality =  request.getParameter("nationality");
-                       String speciality =  request.getParameter("speciality");
-                       String dateOfBirth =  request.getParameter("dateOfBirth");
-                     %>
+            <% String idHospital =  request.getParameter("idHospital");
+               String idDoctor =  request.getParameter("idDoctor");
+               String contractStartDate =  request.getParameter("contractStartDate");
+               String contractEndDate =  request.getParameter("contractEndDate");
+               String position =  request.getParameter("position");
+            %>
         <div class="form-group">
             <label for="inputidh">Identyfikator szpitala</label>
-            <input type="text" name="idH" value="<%= name %>" class="form-control" id="inputidh" placeholder="Identyfikator szpitala" required>
+            <input type="number" name="idHospital" value="<%= idHospital %>" class="form-control" id="inputidh" placeholder="Identyfikator szpitala" required>
 
 		</div>
 		<div class="form-group">
 			<label for="inputidd">Identyfikator lekarza</label>
-			<input type="text" name="idD" value="<%= surname %>" class="form-control" id="inputidd" placeholder="Identyfikator lekarza" required>
+			<input type="number" name="idDoctor" value="<%= idDoctor %>"class="form-control" id="inputidd" placeholder="Identyfikator lekarza" required>
 		</div>
 		<div class="form-group">
 			<label for="inputcontractstartdate">Data podpisania kontraktu</label>
-			<input type="date" name="contractStartDate" value="<%= title %>" class="form-control" id="inputcontractstartdate" placeholder="Data podpisania kontraktu" required>
+			<input type="date" name="contractStartDate" value="<%= contractStartDate %>" class="form-control" id="inputcontractstartdate" placeholder="Data podpisania kontraktu" required>
         </div>
 		<div class="form-group">
 			<label for="inputcontractenddate">Data wygaśnięcia kontraktu</label>
-			<input type="date" name="contractEndDate" value="<%= licenseNumber %>" class="form-control" id="inputcontractenddate" placeholder="Data wygaśnięcia kontraktu" required>
+			<input type="date" name="contractEndDate" value="<%= contractEndDate %>" class="form-control" id="inputcontractenddate" placeholder="Data wygaśnięcia kontraktu" required>
         </div>
 		<div class="form-group">
 			<label for="inputposition">Stanowisko</label>
-			<input type="text" name="position" value="<%= email %>"class="form-control" id="inputposition" placeholder="Stanowisko" required>
+			<input type="text" name="position" value="<%= position %>" class="form-control" id="inputposition" placeholder="Stanowisko" required>
         </div>
 		<div class="form-group form-check-inline">
 			<label for="inputsupervisor">Posiada przełożonego</label>&nbsp
@@ -117,6 +98,7 @@
 			&nbsp
 			<input type="radio" name="supervisor" value="false" class="form-check-input" autocomplete="off" required>Nie
         </div>
+        <br>
         <div class="form-group form-check-inline">
         	<label for="inputparttime">Na pół etatu</label>&nbsp
         	<input type="radio" name="partTime" value="true" class="form-check-input" autocomplete="off" required>Tak
@@ -125,7 +107,6 @@
         </div>
 
 		<div class="mb-3">
-		<br>
         <button class="btn btn-danger btn-lg btn-block" type="submit">Zatrudnij Lekarza</button>
 		</div>
 

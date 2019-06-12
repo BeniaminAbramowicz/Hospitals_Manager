@@ -27,8 +27,8 @@
 <table class="table table-responsive table-sm">
             <thead>
             <tr>
-                <th scope="col">Identyfikator szpitala</th>
-                <th scope="col">Identyfikator lekarza</th>
+                <th scope="col">Nazwa szpitala</th>
+                <th scope="col">Numer licencji lekarza</th>
                 <th scope="col">Data podpisania kontraktu</th>
                 <th scope="col">Data wygaśnięcia kontraktu</th>
                 <th scope="col">Stanowisko</th>
@@ -39,19 +39,27 @@
             <tbody>
             <c:forEach var="hospitaldoctor" items="${hiredList}">
                 <tr>
-                    <td>${hospitaldoctor.idh}</td>
-                    <td>${hospitaldoctor.idd}</td>
+                    <td>${hospitaldoctor.hospital}</td>
+                    <td>${hospitaldoctor.doctor}</td>
                     <td>${hospitaldoctor.contractStartDate}</td>
                     <td>${hospitaldoctor.contractEndDate}</td>
                     <td>${hospitaldoctor.position}</td>
-                    <td>${hospitaldoctor.supervisor}</td>
+                    <td>
+                    <c:choose>
+                       <c:when test="${hospitaldoctor.supervisor == true}">
+                          Tak
+                       </c:when>
+                       <c:otherwise>
+                           Nie
+                       </c:otherwise>
+                       </c:choose></td>
                     <td>
                     <c:choose>
                        <c:when test="${hospitaldoctor.partTime == true}">
-                        YES
+                        Tak
                        </c:when>
                        <c:otherwise>
-                        NO
+                        Nie
                        </c:otherwise>
                      </c:choose>
                     </td>

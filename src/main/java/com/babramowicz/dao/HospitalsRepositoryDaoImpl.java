@@ -1,6 +1,6 @@
 package com.babramowicz.dao;
 
-import com.babramowicz.entities.Hospitals;
+import com.babramowicz.entities.Hospital;
 import org.hibernate.Session;
 
 import javax.ejb.Stateless;
@@ -14,12 +14,12 @@ import static com.babramowicz.utils.HibernateUtil.getSessionFactory;
 public class HospitalsRepositoryDaoImpl implements HospitalsRepositoryDao {
 
     @Override
-    public List<Hospitals> getHospitalsList() {
+    public List<Hospital> getHospitalsList() {
 
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        List<Hospitals> hospitalsList = session.createQuery("SELECT h FROM Hospitals h").getResultList();
+        List<Hospital> hospitalsList = session.createQuery("SELECT h FROM Hospital h").getResultList();
 
         session.getTransaction().commit();
         session.close();
@@ -28,7 +28,7 @@ public class HospitalsRepositoryDaoImpl implements HospitalsRepositoryDao {
     }
 
     @Override
-    public Hospitals addNewHospital(Hospitals hospital) {
+    public Hospital addNewHospital(Hospital hospital) {
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
@@ -45,7 +45,7 @@ public class HospitalsRepositoryDaoImpl implements HospitalsRepositoryDao {
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        session.delete(session.get(Hospitals.class, id));
+        session.delete(session.get(Hospital.class, id));
 
         session.getTransaction().commit();
         session.close();
@@ -56,7 +56,7 @@ public class HospitalsRepositoryDaoImpl implements HospitalsRepositoryDao {
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        String update = "UPDATE Hospitals h SET h.name=:name, h.country=:country, h.town=:town, h.street=:street, h.postalCode=:postalCode, h.phoneNumber=:phoneNumber, h.faxNumber=:faxNumber, h.numberOfAmbulances=:numberOfAmbulances, h.helicopterAccess=:helicopterAccess, h.teachingHospital=:teachingHospital WHERE h.id=:id";
+        String update = "UPDATE Hospital h SET h.name=:name, h.country=:country, h.town=:town, h.street=:street, h.postalCode=:postalCode, h.phoneNumber=:phoneNumber, h.faxNumber=:faxNumber, h.numberOfAmbulances=:numberOfAmbulances, h.helicopterAccess=:helicopterAccess, h.teachingHospital=:teachingHospital WHERE h.id=:id";
         Query query = session.createQuery(update);
         query.setParameter("id", id);
         query.setParameter("name", name);
@@ -76,11 +76,11 @@ public class HospitalsRepositoryDaoImpl implements HospitalsRepositoryDao {
     }
 
     @Override
-    public Hospitals getHospitalById(int id) {
+    public Hospital getHospitalById(int id) {
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
 
-        Hospitals hospital = session.get(Hospitals.class, id);
+        Hospital hospital = session.get(Hospital.class, id);
 
         session.getTransaction().commit();
         session.close();
@@ -89,15 +89,15 @@ public class HospitalsRepositoryDaoImpl implements HospitalsRepositoryDao {
     }
 
     @Override
-    public Hospitals getHospitalByName(String name) {
-        Hospitals hospital;
+    public Hospital getHospitalByName(String name) {
+        Hospital hospital;
         try {
             Session session = getSessionFactory().openSession();
             session.beginTransaction();
-            String select = "SELECT h from Hospitals h WHERE name=:name";
+            String select = "SELECT h from Hospital h WHERE name=:name";
             Query query = session.createQuery(select);
             query.setParameter("name", name);
-            hospital = (Hospitals) query.getSingleResult();
+            hospital = (Hospital) query.getSingleResult();
             session.getTransaction().commit();
             session.close();
             return hospital;
