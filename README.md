@@ -1,4 +1,4 @@
-#Hospitals Manager
+## Hospitals Manager
 
 Web application developed using Java EE, Hibernate and JSP. Main functionalities:
 
